@@ -1,0 +1,27 @@
+group = 'com.thescheideggers'
+def baseVersion = '0.0.1'
+version = project.hasProperty('release') ? baseVersion : "$baseVersion-SNAPSHOT"
+description = "A Gradle plugin to teach others how to make a Gradle plugin"
+
+buildscript {
+    repositories {
+        gradlePluginPortal()
+        jcenter()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'groovy'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.12'
+    testCompile 'junit:junit:4.12'
+}
