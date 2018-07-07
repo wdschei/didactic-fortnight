@@ -14,6 +14,7 @@ import static org.gradle.api.Task.*;
 public class SuperCoolPlugin implements Plugin<Project> {
     @Override
     public void apply(Project project) {
+        SuperCoolPluginExtension superCoolPluginExtension = project.getExtensions().create("supercool", SuperCoolPluginExtension.class, project);
         SuperCoolPluginTask superCoolPluginTask = project.getTasks().create("supercool", SuperCoolPluginTask.class);
         superCoolPluginTask.setGroup("build");
         superCoolPluginTask.setDescription("This is SuperCool");
@@ -28,5 +29,7 @@ public class SuperCoolPlugin implements Plugin<Project> {
         //options.put(TASK_GROUP, "build");                   // The group of the task.
         //options.put(TASK_DESCRIPTION, "This is SuperCool"); // The description of the task.
         //SuperCoolPluginTask superCoolPluginTask = (SuperCoolPluginTask) project.getTasks().create(options);
+
+        superCoolPluginTask.setExtension(superCoolPluginExtension);
     }
 }

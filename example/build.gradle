@@ -35,3 +35,8 @@ task('clean', group: 'build', description: 'Deletes the build directory.') {
         file(project.buildDir).deleteDir()
     }
 }
+
+supercool {
+    inputDir = file('../src')
+    logFile = file("${project.buildDir}/reports/supercooler.txt")
+}
