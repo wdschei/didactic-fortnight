@@ -1,0 +1,37 @@
+buildscript {
+    repositories {
+        gradlePluginPortal()
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        //********************************************************************************
+        // use local artifacts
+        //--------------------------------------------------------------------------------
+        classpath files('../build/libs/superCoolPlugin.jar')                        // ./gradlew unversionedJar
+        //classpath files("/${gradle.gradleHomeDir}/lib/plugins/superCoolPlugin.jar") // ./gradlew installPlugin
+        //********************************************************************************
+        // use artifacts from the Gradle Plugin repository
+        //--------------------------------------------------------------------------------
+        //classpath 'gradle.plugin.com.thescheideggers:superCoolPlugin.jar:1.0.0'
+        //********************************************************************************
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+// This is the name of the properties file located in:
+//  - ${PROJ_ROOT}/src/main/resources/META-INF/gradle-plugins
+apply plugin: 'com.thescheideggers.gradle.plugins.supercool'
+
+// If not applying the 'java' plugin or one of it's descendants,
+// then this gives you the basic clean functionality.
+task('clean', group: 'build', description: 'Deletes the build directory.') {
+    destroyables.register(project.buildDir)
+    doLast {
+        file(project.buildDir).deleteDir()
+    }
+}
