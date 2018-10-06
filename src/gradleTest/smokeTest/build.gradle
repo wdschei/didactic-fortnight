@@ -1,0 +1,13 @@
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+apply plugin: 'com.thescheideggers.gradle.plugins.supercool'
+
+supercool {
+    inputDir = file('.')
+    logFile = file("${project.buildDir}/reports/supercooler.txt")
+}
+
+task runGradleTest { dependsOn tasks.supercool }
