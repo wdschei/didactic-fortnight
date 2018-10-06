@@ -80,6 +80,33 @@ gradleTest {
     }
 }
 
+task showConfigurations(group: 'help', description: "Displays all configurations in root project '${project.name}'.") {
+    doLast {
+        configurations.each { println it.name }
+    }
+}
+
+dependencyCheck {
+    // NOTE: This list is a subset of what is obtained from the `showConfigurations` task above.
+    scanConfigurations = [
+            'compile',
+            'implementation',
+            'compileOnly',
+            'compileClasspath',
+            'runtime',
+            'runtimeOnly',
+            'runtimeClasspath',
+            'default',
+    ]
+    analyzers {
+        assemblyEnabled = false
+    }
+    //failBuildOnCVSS = 7.8 // Will cause this particular build to fail without the suppression file.
+    //failBuildOnCVSS = 0.0 // Will cause a build to fail on any finding that is not suppressed.
+    //suppressionFile = file("${project.projectDir}/src/test/resources/OWASP-Suppression.xml")
+}
+
 // NOTE: See the link below for a better understanding on the relationship of the tasks provided by the Java plugin.
 //       > https://docs.gradle.org/current/userguide/java_plugin.html#sec:java_tasks
 check.dependsOn tasks.gradleTest
+check.dependsOn tasks.dependencyCheckAnalyze

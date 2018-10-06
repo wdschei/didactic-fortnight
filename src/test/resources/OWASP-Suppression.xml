@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.1.xsd">
+    <suppress>
+        <notes><![CDATA[
+   file name: groovy-all-2.4.15.jar
+   ]]></notes>
+        <sha1>423a17aeb2f64bc6f76e8e44265a548bec80fd42</sha1>
+        <cve>CVE-2016-6497</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+   file name: gradle-api-4.10.2.jar (shaded: org.jetbrains:annotations:13.0)
+   ]]></notes>
+        <gav regex="true">^org\.jetbrains:annotations:.*$</gav>
+        <cve>CVE-2017-8316</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+   file name: gradle-api-4.10.2.jar (shaded: com.fasterxml.jackson.core:jackson-databind:2.9.4)
+   ]]></notes>
+        <gav regex="true">^com\.fasterxml\.jackson\.core:jackson-databind:.*$</gav>
+        <cve>CVE-2018-7489</cve>
+    </suppress>
+</suppressions>
